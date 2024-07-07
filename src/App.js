@@ -2,9 +2,12 @@ import './App.css';
 import {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
 import Header from "./components/Header/Header";
+import ProductList from "./components/ProductList/ProductList";
+import Form from "./components/Form/Form";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
-    const {tg, onToggleButton} = useTelegram();
+    const {tg} = useTelegram();
 
     useEffect(() => {
         tg.ready();
@@ -14,7 +17,11 @@ function App() {
         <div className="App">
             <Header/>
 
-            <button onClick={onToggleButton}>Tgl main btn</button>
+            <Routes>
+                <Route index element={<ProductList />} />
+
+                <Route path={'form'} element={<Form />} />
+            </Routes>
         </div>
     );
 }
